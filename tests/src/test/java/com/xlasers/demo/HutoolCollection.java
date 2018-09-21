@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * @modified: Elijah.D
  */
 @Slf4j
-class TestCollectionOne {
+class HutoolCollection {
     /**
      * Test case 1.
      *
