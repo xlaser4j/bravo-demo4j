@@ -50,8 +50,8 @@ public class MyGenerator {
         // 自定义文件命名，不设置默认为,%s自动填充表实体属性!
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
+        /// gc.setAuthor("Elijah.D") 不需要加作者信息,后续复制重新生成注释 (* + tab)
         gc.setEntityName("%sDO");
-        gc.setAuthor("Elijah.D");
 
         // 数据源配置
         DataSourceConfig dataConfig = new DataSourceConfig();
@@ -66,7 +66,7 @@ public class MyGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        /// strategy.setInclude("sys_user");
+        /// strategy.setInclude("sys_log");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
 
