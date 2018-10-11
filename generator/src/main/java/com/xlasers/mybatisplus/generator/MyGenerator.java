@@ -50,6 +50,7 @@ public class MyGenerator {
         // 自定义文件命名，不设置默认为,%s自动填充表实体属性!
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
+        gc.setEntityName("%sDO");
         gc.setAuthor("Elijah.D");
 
         // 数据源配置
