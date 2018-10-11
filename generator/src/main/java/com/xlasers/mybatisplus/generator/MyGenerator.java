@@ -50,7 +50,7 @@ public class MyGenerator {
         // 自定义文件命名，不设置默认为,%s自动填充表实体属性!
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
-        /// gc.setAuthor("Elijah.D") 不需要加作者信息,后续复制重新生成注释 (* + tab)
+        gc.setAuthor("Elijah.D");
         gc.setEntityName("%sDO");
 
         // 数据源配置
@@ -72,7 +72,7 @@ public class MyGenerator {
 
         // 包配置
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setParent("com.xlasers.mybatisplus.targets");
+        packageConfig.setParent("TODO根据项目结构,自定义好包名!");
         packageConfig.setModuleName("");
 
         generator.setGlobalConfig(gc);
