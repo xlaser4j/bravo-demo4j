@@ -8,7 +8,7 @@ import com.github.therapi.runtimejavadoc.ClassJavadoc;
 import com.github.therapi.runtimejavadoc.Comment;
 import com.github.therapi.runtimejavadoc.RuntimeJavadoc;
 import com.google.common.collect.Maps;
-import com.xlasers.api.Api;
+import com.xlasers.api.targets.EsDbInfo;
 
 /**
  * <p>
@@ -24,27 +24,33 @@ import com.xlasers.api.Api;
  * @modified: Elijah.D
  */
 public class ParseDocUtils {
-    public static String getFiledComment(String className, String filedName) {
-        ClassJavadoc docs = RuntimeJavadoc.getJavadoc(className);
-        AtomicReference<Comment> s = new AtomicReference<>();
-        docs.getFields().forEach(o -> {
-            if (filedName.startsWith(o.getName())) {
-                s.set(o.getComment());
-            }
-        });
+	public static String getFiledComment(String className, String filedName) {
+		ClassJavadoc docs = RuntimeJavadoc.getJavadoc(className);
+		AtomicReference<Comment> s = new AtomicReference<>();
+		docs.getFields().forEach(o -> {
+			if (filedName.startsWith(o.getName())) {
+				s.set(o.getComment());
+			}
+		});
 
-        return String.valueOf(s.get());
-    }
+		return String.valueOf(s.get());
+	}
 
-    public static Map<String,String> getFiledComments(Class clazz) {
-        ClassJavadoc docs = RuntimeJavadoc.getJavadoc(clazz);
-        HashMap<String,String> fieldsMap = Maps.newHashMapWithExpectedSize(50);
-        docs.getFields().forEach(o -> fieldsMap.put(o.getName(),o.getComment().toString()));
+	public static Map<String, String> getFiledComments(Class clazz) {
+		ClassJavadoc docs = RuntimeJavadoc.getJavadoc(clazz);
+		HashMap<String, String> fieldsMap = Maps.newHashMapWithExpectedSize(50);
+		docs.getFields().forEach(o -> fieldsMap.put(o.getName(), o.getComment().toString()));
 
-        return fieldsMap;
-    }
+		Class superClass = clazz.getSuperclass();
+		if (superClass != null) {
+			docs = RuntimeJavadoc.getJavadoc(superClass);
+			docs.getFields().forEach(o -> fieldsMap.put(o.getName(), o.getComment().toString()));
+		}
 
-    public static void main(String[] args) {
-        System.out.println(getFiledComments(Api.class));
-    }
+		return fieldsMap;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(getFiledComments(EsDbInfo.class));
+	}
 }
