@@ -5,22 +5,10 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * <p>
- * 数据库信息
- * </p>
- *
- * @package: com.mchz.datamanager.entity.es
- * @description: 数据库信息
- * @author: yangkai.shen
- * @date: Created in 2018/10/22 11:27
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class EsDbInfo extends BaseEsDO {
+    private static final long serialVersionUID = 3903827365997668568L;
 
     /**
      * 数据库类型

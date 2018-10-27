@@ -4,21 +4,10 @@ import java.io.Serializable;
 
 import lombok.Data;
 
-/**
- * <p>
- * es 实体基类
- * </p>
- *
- * @package: com.mchz.datamanager.entity.neo4j
- * @description: es 实体基类
- * @author: yangkai.shen
- * @date: Created in 2018/10/23 22:19
- * @copyright: Copyright (c) 2018
- * @version: V1.0
- * @modified: yangkai.shen
- */
 @Data
 public class BaseEsDO implements Serializable {
+    private static final long serialVersionUID = -5648668896158559269L;
+
     /**
      * 主键
      */

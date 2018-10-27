@@ -1,0 +1,36 @@
+package com.xlasers.api;
+
+import cn.hutool.json.JSONUtil;
+import com.xlasers.api.targets.EsDbInfo;
+import com.xlasers.api.yapi.BuildApi;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+/**
+ * <p>
+ * 测试类,生成json
+ * </p>
+ *
+ * @package: com.xlasers.api
+ * @author: Elijah.D
+ * @time: CreateAt 2018/10/28 && 11:36
+ * @description: 生成json ==> yapi
+ * @copyright: Copyright © 2018 xlasers
+ * @version: V1.0
+ * @modified: Elijah.D
+ */
+@Slf4j
+public class BuildApiTest {
+    /**
+     * Test build api.
+     */
+    @Test
+    public void testBuildApi() {
+
+        String json = BuildApi.toResponseJson(EsDbInfo.class, 1);
+        log.info("======【生成json】====== \n {}", json);
+
+        Assertions.assertTrue(JSONUtil.isJsonObj(json));
+    }
+}
