@@ -14,15 +14,91 @@ package com.xlasers.api.constant;
  * @modified: Elijah.D
  */
 public class ApiConsts {
-    public static final String QUOTES = "\"";
+	/**
+	 * The constant RESPONSE_OBJECT__START.
+	 */
+	public static final String RESPONSE_OBJECT__START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"object\", \"properties\": {";
 
-    public static final String TITLE = "\"\"";
+	/**
+	 * The constant RESPONSE_OBJECT_END.
+	 */
+	public static final String RESPONSE_OBJECT_END = "\"required\": []}}, \"required\": [\"code\", \"message\", \"data\"]}";
 
-    public static final String TYPE = "\"type\":";
+	/**
+	 * The constant RESPONSE_ARRAY__START.
+	 */
+	public static final String RESPONSE_ARRAY__START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {";
 
-    public static final String DESCRIPTION = "\"description\":";
+	/**
+	 * The constant RESPONSE_ARRAY_END.
+	 */
+	public static final String RESPONSE_ARRAY_END = "\"required\": []}}}, \"required\": [\"code\", \"message\", \"data\"]}";
 
-    public static final String NUMBER = "\"number\",";
+	/**
+	 * The constant PARAM_TITLE.
+	 */
+	public static final String PARAM_TITLE = "\"\"";
 
-    public static final String STRING = "\"string\",";
+	/**
+	 * The constant TITLE.
+	 */
+	public static final String TITLE = "\"\"";
+
+	/**
+	 * The constant TYPE.
+	 */
+	public static final String TYPE = "\"type\":";
+
+	/**
+	 * The constant DESCRIPTION.
+	 */
+	public static final String DESCRIPTION = "\"description\":";
+
+	/**
+	 * The constant NUMBER.
+	 */
+	public static final String NUMBER = "\"number\",";
+
+	/**
+	 * The constant STRING.
+	 */
+	public static final String STRING = "\"string\",";
+
+	/**
+	 * The constant ARRAY.
+	 */
+	public static final String ARRAY = "\"array\",\"items\": {\"type\": \"string\"},";
+
+	private ApiConsts() {
+	}
+
+	/**
+	 * The enum Response type.
+	 */
+	public enum ResponseType {
+		/**
+		 * Array response type.
+		 */
+		Array(2),
+
+		/**
+		 * Object response type.
+		 */
+		Object(1);
+
+		private final Integer value;
+
+		ResponseType(int value) {
+			this.value = value;
+		}
+
+		/**
+		 * Gets value.
+		 *
+		 * @return the value
+		 */
+		public int getValue() {
+			return value;
+		}
+	}
 }
