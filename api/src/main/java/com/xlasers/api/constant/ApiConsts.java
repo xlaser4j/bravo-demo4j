@@ -15,24 +15,24 @@ package com.xlasers.api.constant;
  */
 public class ApiConsts {
 	/**
-	 * The constant RESPONSE_OBJECT__START.
+	 * The constant RESPONSE_OBJECT_START.
 	 */
-	public static final String RESPONSE_OBJECT__START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"object\", \"properties\": {";
+	public static final String RESPONSE_OBJECT_START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"object\", \"properties\": {";
 
 	/**
 	 * The constant RESPONSE_OBJECT_END.
 	 */
-	public static final String RESPONSE_OBJECT_END = "\"required\": []}}, \"required\": [\"code\", \"message\", \"data\"]}";
+	public static final String RESPONSE_OBJECT_END = "},\"required\": []}}, \"required\": [\"code\", \"message\", \"data\"]}";
 
 	/**
-	 * The constant RESPONSE_ARRAY__START.
+	 * The constant RESPONSE_ARRAY_START.
 	 */
-	public static final String RESPONSE_ARRAY__START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {";
+	public static final String RESPONSE_ARRAY_START = "{\"$schema\": \"http://json-schema.org/draft-04/schema#\", \"type\": \"object\", \"properties\": {\"code\": {\"type\": \"number\"}, \"message\": {\"type\": \"string\"}, \"data\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {";
 
 	/**
 	 * The constant RESPONSE_ARRAY_END.
 	 */
-	public static final String RESPONSE_ARRAY_END = "\"required\": []}}}, \"required\": [\"code\", \"message\", \"data\"]}";
+	public static final String RESPONSE_ARRAY_END = "},\"required\": []}}}, \"required\": [\"code\", \"message\", \"data\"]}";
 
 	/**
 	 * The constant PARAM_TITLE.
@@ -77,14 +77,14 @@ public class ApiConsts {
 	 */
 	public enum ResponseType {
 		/**
-		 * Array response type.
+		 * ARRAY response type.
 		 */
-		Array(2),
+		ARRAY(2),
 
 		/**
-		 * Object response type.
+		 * OBJECT response type.
 		 */
-		Object(1);
+		OBJECT(1);
 
 		private final Integer value;
 

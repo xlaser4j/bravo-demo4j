@@ -2,11 +2,10 @@ package com.xlasers.api.api;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import cn.hutool.core.util.ReflectUtil;
-import com.xlasers.api.Api;
-import com.xlasers.api.targets.EsDbInfo;
 import com.xlasers.api.util.ParseDocUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,35 +22,48 @@ import static com.xlasers.api.constant.ApiConsts.*;
  */
 @Slf4j
 public class BuildApi {
-    public static void main(String[] args) {
+	public static String toApi(Class clazz, Integer responseType) {
+		Map fieldsMap = ParseDocUtils.getFiledComments(clazz);
 
-        log.info("【Api】");
+		StringBuilder api = new StringBuilder();
+		if (responseType.equals(ResponseType.OBJECT.getValue())) {
+			api.append(RESPONSE_OBJECT_START);
+		}
 
-        System.out.println(toApi(EsDbInfo.class));
-    }
+		if (responseType.equals(ResponseType.ARRAY.getValue())) {
+			api.append(RESPONSE_ARRAY_START);
+		}
 
-    private static String toApi(Class clazz) {
-        Map fieldsMap = ParseDocUtils.getFiledComments(clazz);
+		StringBuilder temp = api;
+		Field[] fields = ReflectUtil.getFields(clazz);
+		Arrays.stream(fields).forEach(o -> {
+			temp.append("\"").append(o.getName()).append("\"").append(":");
+			temp.append("{");
+			temp.append(TYPE);
+			if (Number.class.isAssignableFrom(o.getType())) {
+				temp.append(NUMBER);
+			}
+			if (o.getType().equals(String.class)) {
+				temp.append(STRING);
+			}
+			if (o.getType().equals(List.class)) {
+				temp.append(ARRAY);
+			}
+			temp.append(DESCRIPTION);
+			temp.append("\"").append(fieldsMap.get(o.getName())).append("\"");
+			temp.append("},");
+		});
 
-        StringBuilder api = new StringBuilder();
-        api.append("{");
+		api = temp.deleteCharAt(temp.length() - 1);
 
-        Field[] fields = ReflectUtil.getFields(clazz);
-        Arrays.stream(fields).forEach(o -> {
-            api.append("\"").append(o.getName()).append("\"").append(":");
-            api.append("{");
-            api.append(TYPE);
-            if (o.getType().equals(Integer.class)) {
-                api.append(NUMBER);
-            }
-            if (o.getType().equals(String.class)) {
-                api.append(STRING);
-            }
-            api.append(DESCRIPTION);
-            api.append("\"").append(fieldsMap.get(o.getName())).append("\"");
-            api.append("},");
-        });
+		if (responseType.equals(ResponseType.OBJECT.getValue())) {
+			api.append(RESPONSE_OBJECT_END);
+		}
 
-        return api.substring(0, api.length() - 1) + "}";
-    }
+		if (responseType.equals(ResponseType.ARRAY.getValue())) {
+			api.append(RESPONSE_ARRAY_END);
+		}
+
+		return api.toString();
+	}
 }

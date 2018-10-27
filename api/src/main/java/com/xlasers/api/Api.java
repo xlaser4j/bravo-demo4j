@@ -12,20 +12,19 @@ package com.xlasers.api;
  * @modified: Elijah.D
  */
 public class Api {
-    /**
-     * 主键
-     */
-    private Integer id;
+	/**
+	 * 主键
+	 */
+	private Integer id;
 
-    /**
-     * 名字
-     */
-    private String name;
+	/**
+	 * 名字
+	 */
+	private String name;
 
-    /**
-     * 年龄
-     */
-    private String age;
-
+	/**
+	 * 年龄
+	 */
+	private String age;
 
 }
