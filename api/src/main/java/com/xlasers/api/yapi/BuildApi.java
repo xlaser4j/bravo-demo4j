@@ -12,16 +12,37 @@ import com.xlasers.api.util.ParseDocUtils;
 import static com.xlasers.api.constant.ApiConsts.*;
 
 /**
+ * <p>
+ * 构建yapi统一入口类
+ * </p>
+ *
+ * <p>构建yapi返回类型的json字符串{@link BuildApi#toResponseJson(Class, Integer)},可以生成返回
+ * 单个对象{@link ResponseType#OBJECT}或者列表的{@link ResponseType#ARRAY}的json字符串
+ *
+ * <p>构建yapi参数的json字符串
+ *
  * @package: com.xlasers.api.yapi
  * @author: Elijah.D
  * @time: CreateAt 2018/10/26 && 9:10
- * @description:
+ * @description: 生成json字符串
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
  */
 public class BuildApi {
+    private BuildApi() {
+    }
+
+    /**
+     * <p>生成yapi需要的json字符串
+     *
+     * @param clazz        api放回的类对象
+     * @param responseType 返回的类型{@link ResponseType},1-返回对象,2-返回列表
+     * @return json        构建完成的json字符串
+     */
     public static String toResponseJson(Class clazz, Integer responseType) {
+
+        // 获取字段javadoc注释
         Map fieldsMap = ParseDocUtils.getFiledComments(clazz);
 
         StringBuilder api = new StringBuilder();
@@ -37,6 +58,7 @@ public class BuildApi {
         Field[] fields = ReflectUtil.getFields(clazz);
         Arrays.stream(fields).forEach(o -> {
 
+            // 排除序列化字段
             if (StrUtil.equals(o.getName(), SERIAL_UID)) {
                 return;
             }
