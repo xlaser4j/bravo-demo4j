@@ -56,6 +56,7 @@
         <jacoco.version>0.7.2.201409121644</jacoco.version>
         <camel.version>2.16.1</camel.version>
         <guava.version>19.0</guava.version>
+        <therapi.version>0.8.0</therapi.version>
         <mockito.version>1.10.19</mockito.version>
         <apache-httpcomponents.version>4.5.2</apache-httpcomponents.version>
         <htmlunit.version>2.22</htmlunit.version>
@@ -473,6 +474,20 @@
                 <version>${hibernate.version}</version>
             </dependency>
 
+
+            <!--获取Java doc-->
+            <dependency>
+                <groupId>com.github.therapi</groupId>
+                <artifactId>therapi-runtime-javadoc-scribe</artifactId>
+                <version>${therapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.therapi</groupId>
+                <artifactId>therapi-runtime-javadoc</artifactId>
+                <version>${therapi.version}</version>
+            </dependency>
+
             <!--mock测试-->
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -589,11 +604,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.smartnews</groupId>
-            <artifactId>jpa-entity-generator</artifactId>
-            <version>0.99.4</version>
         </dependency>
     </dependencies>
 
