@@ -21,6 +21,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class EsDbInfo extends BaseEsDO {
+    private static final long serialVersionUID = 3903827365997668568L;
 
     /**
      * 数据库类型
