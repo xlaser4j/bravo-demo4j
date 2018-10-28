@@ -17,13 +17,6 @@
             <artifactId>hutool-all</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>com.sun</groupId>-->
-        <!--<artifactId>tools</artifactId>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>${java.home}/../lib/tools.jar</systemPath>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -32,14 +25,11 @@
         <dependency>
             <groupId>com.github.therapi</groupId>
             <artifactId>therapi-runtime-javadoc-scribe</artifactId>
-            <version>0.8.0</version>
         </dependency>
 
-        <!-- Runtime library -->
         <dependency>
             <groupId>com.github.therapi</groupId>
             <artifactId>therapi-runtime-javadoc</artifactId>
-            <version>0.8.0</version>
         </dependency>
     </dependencies>
 
