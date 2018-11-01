@@ -35,16 +35,6 @@ public class ApiConsts {
     public static final String RESPONSE_ARRAY_END = "},\"required\": []}}}, \"required\": [\"code\", \"message\", \"data\"]}";
 
     /**
-     * The constant PARAM_TITLE.
-     */
-    public static final String PARAM_TITLE = "\"\"";
-
-    /**
-     * The constant TITLE.
-     */
-    public static final String TITLE = "\"\"";
-
-    /**
      * The constant TYPE.
      */
     public static final String TYPE = "\"type\":";
@@ -74,8 +64,8 @@ public class ApiConsts {
      */
     public static final String ARRAY = "\"array\",\"items\": {\"type\": \"string\"},";
 
-	private ApiConsts() {
-	}
+    private ApiConsts() {
+    }
 
     /**
      * The enum Response type.
@@ -91,11 +81,11 @@ public class ApiConsts {
          */
         OBJECT(1);
 
-		private final Integer value;
+        private final Integer value;
 
-		ResponseType(int value) {
-			this.value = value;
-		}
+        ResponseType(int value) {
+            this.value = value;
+        }
 
         /**
          * Gets value.
@@ -103,7 +93,7 @@ public class ApiConsts {
          * @return the value
          */
         public int getValue() {
-			return value;
-		}
-	}
+            return value;
+        }
+    }
 }

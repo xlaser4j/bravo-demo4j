@@ -8,6 +8,7 @@ import java.util.Map;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.xlasers.api.util.ParseDocUtils;
+import com.xlasers.api.util.ParseJsonUtils;
 
 import static com.xlasers.api.constant.ApiConsts.*;
 
@@ -16,7 +17,7 @@ import static com.xlasers.api.constant.ApiConsts.*;
  * 构建yapi统一入口类
  * </p>
  *
- * <p>构建yapi返回类型的json字符串{@link BuildApi#toResponseJson(Class, Integer)},可以生成返回
+ * <p>构建yapi返回类型的json字符串{@link YapiUtils#toResponseJson(Class, Integer)},可以生成返回
  * 单个对象{@link ResponseType#OBJECT}或者列表的{@link ResponseType#ARRAY}的json字符串
  *
  * <p>构建yapi参数的json字符串
@@ -29,8 +30,8 @@ import static com.xlasers.api.constant.ApiConsts.*;
  * @version: V1.0
  * @modified: Elijah.D
  */
-public class BuildApi {
-    private BuildApi() {
+public class YapiUtils {
+    private YapiUtils() {
     }
 
     /**
@@ -91,5 +92,16 @@ public class BuildApi {
         }
 
         return api.toString();
+    }
+
+    /**
+     * 根据yapi生成java实体对象
+     *
+     * @param jsonStr yapi中的json
+     * @return java字符串  实体类字符串
+     */
+    public static String toEntityFromJson(String jsonStr) {
+
+        return ParseJsonUtils.buildFieldsFromJson(jsonStr);
     }
 }

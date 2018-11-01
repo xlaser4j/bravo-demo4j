@@ -5,8 +5,21 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
+/**
+ * <p>
+ * 测试entity
+ * </p>
+ *
+ * @package: com.xlasers.api.targets
+ * @author: Elijah.D
+ * @time: CreateAt 2018/11/6 && 15:28
+ * @description: 测试yapi
+ * @copyright: Copyright © 2018 xlasers
+ * @version: V1.0
+ * @modified: Elijah.D
+ */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class EsDbInfo extends BaseEsDO {
     private static final long serialVersionUID = 3903827365997668568L;
 

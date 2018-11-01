@@ -26,6 +26,13 @@ public class ParseDocUtils {
     private ParseDocUtils() {
     }
 
+    /**
+     * <p>获取单个字段的注释
+     *
+     * @param className 类的全限定名
+     * @param filedName 字段名
+     * @return 字段对应的注释
+     */
     public static String getFiledComment(String className, String filedName) {
         ClassJavadoc docs = RuntimeJavadoc.getJavadoc(className);
         AtomicReference<Comment> s = new AtomicReference<>();
@@ -38,6 +45,12 @@ public class ParseDocUtils {
         return String.valueOf(s.get());
     }
 
+    /**
+     * <p>获取所有字段注释,按照字段名,注释生成map结构
+     *
+     * @param clazz 类
+     * @return map
+     */
     public static Map<String, String> getFiledComments(Class clazz) {
         ClassJavadoc docs = RuntimeJavadoc.getJavadoc(clazz);
         HashMap<String, String> fieldsMap = Maps.newHashMapWithExpectedSize(50);
