@@ -6,18 +6,33 @@ import cn.hutool.json.JSONUtil;
 
 /**
  * <p>
- *
+ * 根据yapi中的json格式,生成java对象
  * </p>
  *
  * @package: com.xlasers.api.util
  * @author: Elijah.D
  * @time: CreateAt 2018/11/1 && 12:48
- * @description:
+ * @description: 生成java对象
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
  */
 public class ParseJsonUtils {
+    private ParseJsonUtils() {
+    }
+
+    /**
+     * 根据yapi生成java实体对象
+     *
+     * <p>数字类,统一转换为{@link Number}
+     *
+     * <p>集合类,统一转换为{@link java.util.List<String>}
+     *
+     * <p>深度一层,暂时不考虑对象嵌套对象的情况(可以内部生成一次,外部生成一次,手动组织对象)
+     *
+     * @param jsonStr yapi中的json
+     * @return java字符串  实体类字符串
+     */
     public static String buildFieldsFromJson(String jsonStr) {
         JSONObject sourceJson = JSONUtil.parseObj(jsonStr);
         JSONObject outerJson = JSONUtil.parseObj(sourceJson.get("properties"));
@@ -49,53 +64,5 @@ public class ParseJsonUtils {
             fields.append(" ").append(s).append(";");
         });
         return fields.toString();
-    }
-
-    public static void main(String[] args) {
-        String s = "{\n" +
-                "  \"type\": \"object\",\n" +
-                "  \"properties\": {\n" +
-                "    \"viewName\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"视图名字\"\n" +
-                "    },\n" +
-                "    \"viewChineseName\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"视图中文名字\"\n" +
-                "    },\n" +
-                "    \"viewComment\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"视图注释\"\n" +
-                "    },\n" +
-                "    \"colNum\": {\n" +
-                "      \"type\": \"number\",\n" +
-                "      \"description\": \"列数量\"\n" +
-                "    },\n" +
-                "    \"sql\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"创建视图的语句,生成方式\"\n" +
-                "    },\n" +
-                "    \"inputTableNames\": {\n" +
-                "      \"type\": \"array\",\n" +
-                "      \"items\": {\n" +
-                "        \"type\": \"string\"\n" +
-                "      },\n" +
-                "      \"description\": \"来源表 - 关系\"\n" +
-                "    },\n" +
-                "    \"contextPath\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"上下文路径\"\n" +
-                "    },\n" +
-                "    \"createAt\": {\n" +
-                "      \"type\": \"number\",\n" +
-                "      \"description\": \"生效时间\"\n" +
-                "    },\n" +
-                "    \"createBy\": {\n" +
-                "      \"type\": \"string\",\n" +
-                "      \"description\": \"创建人\"\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
-        System.out.println(buildFieldsFromJson(s));
     }
 }

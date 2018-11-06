@@ -4,6 +4,19 @@ import java.io.Serializable;
 
 import lombok.Data;
 
+/**
+ * <p>
+ * 测试entity
+ * </p>
+ *
+ * @package: com.xlasers.api.targets
+ * @author: Elijah.D
+ * @time: CreateAt 2018/11/6 && 15:28
+ * @description: 测试yapi
+ * @copyright: Copyright © 2018 xlasers
+ * @version: V1.0
+ * @modified: Elijah.D
+ */
 @Data
 public class BaseEsDO implements Serializable {
     private static final long serialVersionUID = -5648668896158559269L;
