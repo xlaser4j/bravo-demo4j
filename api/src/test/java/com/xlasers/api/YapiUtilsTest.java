@@ -2,7 +2,7 @@ package com.xlasers.api;
 
 import cn.hutool.json.JSONUtil;
 import com.xlasers.api.targets.EsDbInfo;
-import com.xlasers.api.yapi.BuildApi;
+import com.xlasers.api.yapi.YapiUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ import org.junit.jupiter.api.Test;
  * @modified: Elijah.D
  */
 @Slf4j
-public class BuildApiTest {
+public class YapiUtilsTest {
     /**
      * Test build api.
      */
     @Test
     public void testBuildApi() {
 
-        String json = BuildApi.toResponseJson(EsDbInfo.class, 1);
+        String json = YapiUtils.toResponseJson(EsDbInfo.class, 1);
         log.info("======【生成json】====== \n {}", json);
 
         Assertions.assertTrue(JSONUtil.isJsonObj(json));
