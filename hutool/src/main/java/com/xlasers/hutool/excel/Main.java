@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
 
         ExcelReader reader = ExcelUtil.getReader("C:\\Users\\Solor\\Desktop\\Code\\future\\bravo-demos\\hutool\\Import-Model.xlsx");
-        List<DbInfo> all = reader.readAll(DbInfo.class);
-        log.info("【all】:{}", all.toString());
+        List<DbInfo> all = reader.read(0,2,DbInfo.class);
+        log.info("【all】:{}", all);
     }
 }

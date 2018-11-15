@@ -60,5 +60,5 @@ public class DbInfo extends BaseNeoDO {
     /**
      * 数据库业务类型 - 关系
      */
-    private List<String> businessType;
+    private String businessType;
 }
