@@ -35,7 +35,7 @@
         <druid.version>1.0.27</druid.version>
         <HikariCP.version>2.7.2</HikariCP.version>
         <xerces.version>2.12.0</xerces.version>
-        <poi.version>4.0.0</poi.version>
+        <poi.version>3.17</poi.version>
         <hutool-all.version>4.0.12</hutool-all.version>
         <guava.version>25.0-jre</guava.version>
         <modelmapper.version>1.1.0</modelmapper.version>
