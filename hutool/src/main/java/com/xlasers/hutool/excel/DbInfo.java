@@ -1,18 +1,17 @@
 package com.xlasers.hutool.excel;
 
-import java.util.List;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 /**
  * <p>
- *
+ * model: 字典
  * </p>
  *
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
  * @time: CreateAt 2018/11/15 && 14:29
- * @description:
+ * @description: 字典模型
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
