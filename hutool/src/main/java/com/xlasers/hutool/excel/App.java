@@ -27,7 +27,7 @@ public class App {
 
         log.info("【获取excel下sheet名字】:{}", reader.getSheetNames());
 
-        List<DbInfo> all = reader.read(0, 2, DbInfo.class);
+        List<DbInfoDTO> all = reader.read(0, 2, DbInfoDTO.class);
         log.info("【读取excel数据】:{}", all);
     }
 }

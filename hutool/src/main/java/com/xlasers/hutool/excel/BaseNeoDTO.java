@@ -18,7 +18,7 @@ import lombok.Data;
  * @modified: Elijah.D
  */
 @Data
-public abstract class BaseNeoDO implements Serializable {
+public abstract class BaseNeoDTO implements Serializable {
     private static final long serialVersionUID = 2090859342042139331L;
 
     /**

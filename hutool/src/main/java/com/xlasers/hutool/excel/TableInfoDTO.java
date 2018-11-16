@@ -1,7 +1,5 @@
 package com.xlasers.hutool.excel;
 
-import java.util.List;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TableInfo extends BaseNeoDO {
+public class TableInfoDTO extends BaseNeoDTO {
     private static final long serialVersionUID = -7104765013518825162L;
 
     /**
@@ -101,45 +99,40 @@ public class TableInfo extends BaseNeoDO {
     /**
      * 单列索引名称+列名
      */
-    private List<String> singleIndexDetail;
+    private String singleIndexDetail;
 
     /**
      * 组合索引名称+列名
      */
-    private List<String> combinationIndexDetail;
-
-    /**
-     * 所属数据库 - 关系
-     */
-    private DbInfo dbInfo;
+    private String combinationIndexDetail;
 
     /**
      * 表业务类型 - 关系
      */
-    private List<DictInfo> businessType;
+    private String businessType;
 
     /**
      * 表行业类型 - 关系
      */
-    private List<DictInfo> industryType;
+    private String industryType;
 
     /**
      * 其他属性
      */
-    private List<DictInfo> otherType;
+    private String otherType;
 
     /**
      * 模型类型表: 维表、事实表、中间表
      */
-    private List<DictInfo> modelType;
+    private String modelType;
 
     /**
      * 内容类型表: 业务流水表、代码表、业务操作表
      */
-    private List<DictInfo> contentType;
+    private String contentType;
 
     /**
      * 物理类型表: 外部表、普通表、索引组织表
      */
-    private List<DictInfo> physicalType;
+    private String physicalType;
 }

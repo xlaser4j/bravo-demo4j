@@ -1,7 +1,5 @@
 package com.xlasers.hutool.excel;
 
-import java.util.List;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ColumnInfo extends BaseNeoDO {
+public class ColumnInfoDTO extends BaseNeoDTO {
     private static final long serialVersionUID = 8387817635938048311L;
 
     /**
@@ -66,7 +64,7 @@ public class ColumnInfo extends BaseNeoDO {
     /**
      * 列长度|精度值
      */
-    private Integer length;
+    private String length;
 
     /**
      * 最大长度/值
@@ -151,7 +149,7 @@ public class ColumnInfo extends BaseNeoDO {
     /**
      * 索引信息
      */
-    private List<String> indexDetail;
+    private String indexDetail;
 
     /**
      * 是否外键，0 - 否，1 - 是
@@ -209,37 +207,17 @@ public class ColumnInfo extends BaseNeoDO {
     private Integer isCPk;
 
     /**
-     * 所属表格 - 关系
-     */
-    private TableInfo tableInfo;
-
-    /**
-     * 主键表 - 关系
-     */
-    private TableInfo pkTableInfo;
-
-    /**
-     * 外键表 - 关系
-     */
-    private TableInfo fkTableInfo;
-
-    /**
-     * 所属视图 - 关系
-     */
-    private ViewInfo viewInfo;
-
-    /**
      * 业务类型 - 关系
      */
-    private List<DictInfo> businessType;
+    private String businessType;
 
     /**
      * 技术类型 - 关系
      */
-    private List<DictInfo> technicalType;
+    private String technicalType;
 
     /**
      * 枚举域
      */
-    private List<DictInfo> enumDomains;
+    private String enumDomains;
 }
