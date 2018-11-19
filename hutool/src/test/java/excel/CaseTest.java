@@ -7,7 +7,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
-import com.xlasers.hutool.excel.*;
+import com.xlasers.hutool.excel.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,7 @@ public class CaseTest {
         writer.resetRow().write(CollUtil.newArrayList(new TableInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
 
         writer.setOrCreateSheet("View");
-        writer.resetRow().write(CollUtil.newArrayList(new ViewInfo())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
+        writer.resetRow().write(CollUtil.newArrayList(new ViewInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
 
         writer.setOrCreateSheet("Column");
         writer.resetRow().write(CollUtil.newArrayList(new ColumnInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
@@ -62,7 +62,7 @@ public class CaseTest {
 
         List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
         List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
-        List<ViewInfo> views = reader.setSheet("View").read(0, 1, ViewInfo.class);
+        List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
         List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
 
         data.addAll(dbs);

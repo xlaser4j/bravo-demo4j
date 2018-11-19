@@ -1,4 +1,4 @@
-package com.xlasers.hutool.excel;
+package com.xlasers.hutool.excel.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
  * model: 字典
  * </p>
  *
- * @package: com.xlasers.hutool.excel
+ * @package: com.xlasers.hutool.excel.dto
  * @author: Elijah.D
  * @time: CreateAt 2018/11/15 && 14:29
  * @description: 字典模型

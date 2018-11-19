@@ -1,24 +1,26 @@
 package com.xlasers.hutool.excel;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * model: 表格信息
+ *
  * </p>
  *
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
- * @time: CreateAt 2018/11/16 && 14:47
- * @description: 模型, 表格信息
+ * @time: CreateAt 2018/11/19 && 9:47
+ * @description:
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class TableInfoDTO extends BaseNeoDTO {
+public class TableInfo extends BaseNeoDO {
     private static final long serialVersionUID = -7104765013518825162L;
 
     /**
@@ -99,40 +101,46 @@ public class TableInfoDTO extends BaseNeoDTO {
     /**
      * 单列索引名称+列名
      */
-    private String singleIndexDetail;
+    private List<String> singleIndexDetail;
 
     /**
      * 组合索引名称+列名
      */
-    private String combinationIndexDetail;
+    private List<String> combinationIndexDetail;
+
+    /**
+     * 所属数据库 - 关系
+     */
+    //@Relationship(value = NeoConsts.R_TABLE_INFO, direction = Relationship.INCOMING)
+    private DbInfo dbInfo;
 
     /**
      * 表业务类型 - 关系
      */
-    private String businessType;
+    private List<DictInfo> businessType;
 
     /**
      * 表行业类型 - 关系
      */
-    private String industryType;
+    private List<DictInfo> industryType;
 
     /**
      * 其他属性
      */
-    private String otherType;
+    private List<DictInfo> otherType;
 
     /**
      * 模型类型表: 维表、事实表、中间表
      */
-    private String modelType;
+    private List<DictInfo> modelType;
 
     /**
      * 内容类型表: 业务流水表、代码表、业务操作表
      */
-    private String contentType;
+    private List<DictInfo> contentType;
 
     /**
      * 物理类型表: 外部表、普通表、索引组织表
      */
-    private String physicalType;
+    private List<DictInfo> physicalType;
 }

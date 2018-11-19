@@ -1,24 +1,25 @@
 package com.xlasers.hutool.excel;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * model: 列字段
- * </p>
  *
+ * </p>
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
- * @time: CreateAt 2018/11/16 && 14:45
- * @description: 模型, 列信息
+ * @time: CreateAt 2018/11/19 && 9:46
+ * @description:
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ColumnInfoDTO extends BaseNeoDTO {
+public class ColumnInfo extends BaseNeoDO {
     private static final long serialVersionUID = 8387817635938048311L;
 
     /**
@@ -149,7 +150,7 @@ public class ColumnInfoDTO extends BaseNeoDTO {
     /**
      * 索引信息
      */
-    private String indexDetail;
+    private List<String> indexDetail;
 
     /**
      * 是否外键，0 - 否，1 - 是
@@ -207,17 +208,41 @@ public class ColumnInfoDTO extends BaseNeoDTO {
     private Integer isCPk;
 
     /**
+     * 所属表格 - 关系
+     */
+    //@Relationship(value = NeoConsts.R_COLUMN_INFO, direction = Relationship.INCOMING)
+    private TableInfo tableInfo;
+
+    /**
+     * 主键表 - 关系
+     */
+    //@Relationship(value = NeoConsts.R_PK_TABLE)
+    private TableInfo pkTableInfo;
+
+    /**
+     * 外键表 - 关系
+     */
+    //@Relationship(value = NeoConsts.R_FK_TABLE)
+    private TableInfo fkTableInfo;
+
+    /**
+     * 所属视图 - 关系
+     */
+    //@Relationship(value = NeoConsts.R_COLUMN_INFO, direction = Relationship.INCOMING)
+    private ViewInfo viewInfo;
+
+    /**
      * 业务类型 - 关系
      */
-    private String businessType;
+    private List<DictInfo> businessType;
 
     /**
      * 技术类型 - 关系
      */
-    private String technicalType;
+    private List<DictInfo> technicalType;
 
     /**
      * 枚举域
      */
-    private String enumDomains;
+    private List<DictInfo> enumDomains;
 }
