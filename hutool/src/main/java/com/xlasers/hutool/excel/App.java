@@ -3,8 +3,6 @@ package com.xlasers.hutool.excel;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
@@ -13,6 +11,7 @@ import com.xlasers.hutool.excel.dto.ColumnInfoDTO;
 import com.xlasers.hutool.excel.dto.DbInfoDTO;
 import com.xlasers.hutool.excel.dto.TableInfoDTO;
 import com.xlasers.hutool.excel.dto.ViewInfoDTO;
+import com.xlasers.hutool.util.BeanUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -31,29 +30,51 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
     public static void main(String[] args) {
-
         List<BaseNeoDO> data = CollUtil.newArrayList();
 
         ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
         log.info("【获取excel下sheet名字】:{}", reader.getSheetNames());
 
-        List<DbInfoDTO> dtos = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
-        log.info("【dtos】:{}", dtos);
-
-        List<DbInfo> dos = new ArrayList<>(dtos.size());
-        dtos.forEach(dto -> {
+        // db
+        List<DbInfoDTO> dbDTOs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
+        List<DbInfo> dbs = new ArrayList<>(dbDTOs.size());
+        dbDTOs.forEach(o -> {
             DbInfo db = new DbInfo();
-            BeanUtil.copyProperties(dto, db,CopyOptions.create().setIgnoreError(true));
-            dos.add(db);
+            BeanUtils.copy(o, db);
+            dbs.add(db);
         });
 
-        log.info("【dos】:{}", dos);
+        // table
+        List<TableInfoDTO> tableDTOs = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
+        List<TableInfo> tables = new ArrayList<>(tableDTOs.size());
+        tableDTOs.forEach(o -> {
+            TableInfo table = new TableInfo();
+            BeanUtils.copy(o, table);
+            tables.add(table);
+        });
 
-        List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
-        List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
-        List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+        // view
+        List<ViewInfoDTO> viewDTOs = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
+        List<ViewInfo> views = new ArrayList<>(viewDTOs.size());
+        viewDTOs.forEach(o -> {
+            ViewInfo view = new ViewInfo();
+            BeanUtils.copy(o, view);
+            views.add(view);
+        });
 
-        log.info("【解析成JavaBean】:{}", data);
+        // column
+        List<ColumnInfoDTO> columnDTOs = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+        List<ColumnInfo> columns = new ArrayList<>(columnDTOs.size());
+        columnDTOs.forEach(o -> {
+            ColumnInfo column = new ColumnInfo();
+            BeanUtils.copy(o, column);
+            columns.add(column);
+        });
+
+        data.addAll(dbs);
+        data.addAll(tables);
+        data.addAll(views);
+        data.addAll(columns);
 
         log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
     }
