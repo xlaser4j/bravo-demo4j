@@ -1,4 +1,4 @@
-package com.xlasers.hutool.excel;
+package com.xlasers.hutool.excel.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
  * model: 列字段
  * </p>
  *
- * @package: com.xlasers.hutool.excel
+ * @package: com.xlasers.hutool.excel.dto
  * @author: Elijah.D
  * @time: CreateAt 2018/11/16 && 14:45
  * @description: 模型, 列信息
@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ColumnInfoDTO extends BaseNeoDTO {
-    private static final long serialVersionUID = 8387817635938048311L;
+    private static final long serialVersionUID = 760131652771176862L;
 
     /**
      * schema 名字

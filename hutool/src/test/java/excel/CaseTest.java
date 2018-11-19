@@ -1,13 +1,19 @@
 package excel;
 
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Console;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
-import com.xlasers.hutool.excel.*;
+import cn.hutool.poi.excel.sax.Excel07SaxReader;
+import cn.hutool.poi.excel.sax.handler.RowHandler;
+import com.xlasers.hutool.excel.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +33,18 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class CaseTest {
     /**
+     * <p>1.sax读取excel数据 {@link CaseTest#testSax()}
+     *
+     * <p>2.lambada表达式变形 {@link CaseTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
+     *
+     * @return RowHandler
+     */
+    private static RowHandler createRowHandler() {
+        AtomicInteger count = new AtomicInteger();
+        return (o1, o2, o3) -> Console.log("[{}], [{}], [{}], {}", count.getAndIncrement(), o1, o2, o3);
+    }
+
+    /**
      * 测试,读取beans写入excel
      */
     @Test
@@ -41,7 +59,7 @@ public class CaseTest {
         writer.resetRow().write(CollUtil.newArrayList(new TableInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
 
         writer.setOrCreateSheet("View");
-        writer.resetRow().write(CollUtil.newArrayList(new ViewInfo())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
+        writer.resetRow().write(CollUtil.newArrayList(new ViewInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
 
         writer.setOrCreateSheet("Column");
         writer.resetRow().write(CollUtil.newArrayList(new ColumnInfoDTO())).setRowHeight(-1, 20).setColumnWidth(-1, 15);
@@ -50,27 +68,70 @@ public class CaseTest {
     }
 
     /**
-     * 测试,解析excel到bean
+     * <p>测试,解析excel到bean
+     *
+     * <p>注意多线程操作不可以传入的同一个reader,必须是不同的对象,否则读取混乱{@code ExcelUtil.getReader(path)}
      */
     @Test
-    public void testReader() {
+    public void testReader() throws InterruptedException {
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(40);
 
         List<BaseNeoDTO> data = CollUtil.newArrayList();
 
-        ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
-        log.info("【获取excel下sheet名字】:{}", reader.getSheetNames());
+        String path = "C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx";
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
+            List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
+            log.info("【dbs】:{}", dbs);
+            (data).addAll(dbs);
+        });
 
-        List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
-        List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
-        List<ViewInfo> views = reader.setSheet("View").read(0, 1, ViewInfo.class);
-        List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
+            List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
+            log.info("【tables】:{}", tables);
+            (data).addAll(tables);
+        });
 
-        data.addAll(dbs);
-        data.addAll(tables);
-        data.addAll(views);
-        data.addAll(columns);
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
+            List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
+            log.info("【views】:{}", views);
+            (data).addAll(views);
+        });
+
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
+            List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+            log.info("【columns】:{}", columns);
+            (data).addAll(columns);
+        });
+
+        // 防止主线程执行完,线程池关闭
+        Thread.sleep(5000);
+
         log.info("【解析成JavaBean】:{}", data);
 
         log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
+    }
+
+    /**
+     * 测试大批量数据读取
+     */
+    @Test
+    public void testSax() {
+        Excel07SaxReader reader2 = new Excel07SaxReader(createRowHandler());
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
+    }
+
+    /**
+     * 获取excel总条数
+     */
+    @Test
+    public void testTotalCount() {
+        AtomicLong count = new AtomicLong();
+        Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
+        log.info("【获取excel总条数】: {}", count.get() - 4);
     }
 }
