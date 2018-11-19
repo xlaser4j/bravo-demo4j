@@ -5,18 +5,19 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/** 
+/**
  * <p>
- * 
+ * model: 数据库
  * </p>
+ *
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
  * @time: CreateAt 2018/11/19 && 9:56
- * @description:
+ * @description: 模型, 数据库信息
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
- */ 
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DbInfo extends BaseNeoDO {
@@ -61,27 +62,4 @@ public class DbInfo extends BaseNeoDO {
      * 数据库业务类型 - 关系
      */
     private List<DictInfo> businessType;
-
-    /**
-     * {@code Table} 或者 {@code View} 创建 {@code Db} 对象，不包含 {@code id} 和 {@code contextPath} 属性
-     *
-     * @param neoData {@code Table} 对象或者 {@code View} 对象
-     * @return DbInfo
-     */
-    public static <N extends BaseNeoDO> DbInfo buildBaseDbInfo(N neoData) {
-        DbInfo dbInfo = new DbInfo();
-        dbInfo.setJobId(neoData.getJobId());
-        dbInfo.setJobName(neoData.getJobName());
-        dbInfo.setMetaName(neoData.getMetaName());
-        dbInfo.setDbName(neoData.getDbName());
-        dbInfo.setConfigType(neoData.getConfigType());
-        dbInfo.setHost(neoData.getHost());
-        dbInfo.setPort(neoData.getPort());
-        dbInfo.setCreateAt(neoData.getCreateAt());
-        dbInfo.setUpdateAt(neoData.getUpdateAt());
-        dbInfo.setCreateBy(neoData.getCreateBy());
-        dbInfo.setUpdateBy(neoData.getUpdateBy());
-        dbInfo.setVersion(neoData.getVersion());
-        return dbInfo;
-    }
 }

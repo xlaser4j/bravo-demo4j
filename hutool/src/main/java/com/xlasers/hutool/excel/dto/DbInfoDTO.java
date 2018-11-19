@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DbInfoDTO extends BaseNeoDTO {
-    private static final long serialVersionUID = 8013228015905042919L;
+    private static final long serialVersionUID = -3896117441933648416L;
 
     /**
      * 数据库类型

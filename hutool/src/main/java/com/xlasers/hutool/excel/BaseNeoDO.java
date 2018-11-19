@@ -6,13 +6,13 @@ import lombok.Data;
 
 /**
  * <p>
- *
+ * model: 父类属性
  * </p>
  *
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
  * @time: CreateAt 2018/11/19 && 9:49
- * @description:
+ * @description: 模型,通用父类
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D

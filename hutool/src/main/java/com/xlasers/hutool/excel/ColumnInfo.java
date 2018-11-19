@@ -7,12 +7,13 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *
+ * model: 列信息
  * </p>
+ *
  * @package: com.xlasers.hutool.excel
  * @author: Elijah.D
  * @time: CreateAt 2018/11/19 && 9:46
- * @description:
+ * @description: 模型,列信息
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
@@ -20,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ColumnInfo extends BaseNeoDO {
-    private static final long serialVersionUID = 8387817635938048311L;
+    private static final long serialVersionUID = -2242401020729309143L;
 
     /**
      * schema 名字

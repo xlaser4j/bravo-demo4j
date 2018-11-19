@@ -53,4 +53,9 @@ public class DictInfo {
      * 修改者
      */
     private String updateBy;
+
+    public DictInfo(String dictName, String dictType) {
+        this.dictName = dictName;
+        this.dictType = dictType;
+    }
 }

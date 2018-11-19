@@ -12,14 +12,14 @@ import lombok.Data;
  * @package: com.xlasers.hutool.excel.dto
  * @author: Elijah.D
  * @time: CreateAt 2018/11/15 && 14:29
- * @description: 父类,通用属性
+ * @description: 父类, 通用属性
  * @copyright: Copyright © 2018 xlasers
  * @version: V1.0
  * @modified: Elijah.D
  */
 @Data
 public abstract class BaseNeoDTO implements Serializable {
-    private static final long serialVersionUID = 2090859342042139331L;
+    private static final long serialVersionUID = -4695753610423087448L;
 
     /**
      * 数据库类型
