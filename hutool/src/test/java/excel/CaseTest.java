@@ -1,12 +1,17 @@
 package excel;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Console;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
+import cn.hutool.poi.excel.sax.Excel07SaxReader;
+import cn.hutool.poi.excel.sax.handler.RowHandler;
 import com.xlasers.hutool.excel.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -26,6 +31,18 @@ import org.junit.jupiter.api.Test;
  */
 @Slf4j
 public class CaseTest {
+    /**
+     * <p>1.sax读取excel数据 {@link CaseTest#testSax()}
+     *
+     * <p>2.lambada表达式变形 {@link CaseTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
+     *
+     * @return RowHandler
+     */
+    private static RowHandler createRowHandler() {
+        AtomicInteger count = new AtomicInteger();
+        return (o1, o2, o3) -> Console.log("[{}], [{}], [{}], {}", count.getAndIncrement(), o1, o2, o3);
+    }
+
     /**
      * 测试,读取beans写入excel
      */
@@ -72,5 +89,25 @@ public class CaseTest {
         log.info("【解析成JavaBean】:{}", data);
 
         log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
+    }
+
+    /**
+     * 测试大批量数据读取
+     */
+    @Test
+    public void testSax() {
+        Excel07SaxReader reader2 = new Excel07SaxReader(createRowHandler());
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
+    }
+
+    /**
+     * 获取excel总条数
+     */
+    @Test
+    public void testTotalCount() {
+        AtomicLong count = new AtomicLong();
+        Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
+        log.info("【获取excel总条数】: {}", count.get() - 4);
     }
 }
