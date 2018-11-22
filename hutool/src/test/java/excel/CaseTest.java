@@ -1,12 +1,12 @@
 package excel;
 
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Console;
-import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
@@ -70,25 +70,45 @@ public class CaseTest {
      * 测试,解析excel到bean
      */
     @Test
-    public void testReader() {
+    public void testReader() throws InterruptedException {
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(40);
 
         List<BaseNeoDTO> data = CollUtil.newArrayList();
 
-        ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
-        log.info("【获取excel下sheet名字】:{}", reader.getSheetNames());
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
-        List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
-        List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
-        List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
-        List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+            List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
+            log.info("【dbs】:{}", dbs);
+        });
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
-        data.addAll(dbs);
-        data.addAll(tables);
-        data.addAll(views);
-        data.addAll(columns);
-        log.info("【解析成JavaBean】:{}", data);
+            List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
+            log.info("【tables】:{}", tables);
+        });
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
-        log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
+            List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
+            log.info("【views】:{}", views);
+        });
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
+
+            List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
+            log.info("【columns】:{}", columns);
+        });
+
+        Thread.sleep(100000);
+
+        //data.addAll(dbs);
+        //data.addAll(tables);
+        //data.addAll(views);
+        //data.addAll(columns);
+        //log.info("【解析成JavaBean】:{}", data);
+        //
+        //log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
     }
 
     /**
