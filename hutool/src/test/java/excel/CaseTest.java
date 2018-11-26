@@ -1,5 +1,6 @@
 package excel;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -129,5 +130,12 @@ public class CaseTest {
         Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
         reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
         log.info("【获取excel总条数】: {}", count.get() - 4);
+    }
+
+    /**
+     * 获取excel总条数
+     */
+    @Test
+    public void testTotalCount2() throws IOException {
     }
 }
