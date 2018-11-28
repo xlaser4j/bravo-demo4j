@@ -1,6 +1,5 @@
 package excel;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -8,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Console;
+import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
@@ -68,7 +68,9 @@ public class CaseTest {
     }
 
     /**
-     * 测试,解析excel到bean
+     * <p>测试,解析excel到bean
+     *
+     * <p>注意多线程操作不可以传入的同一个reader,必须是不同的对象,否则读取混乱{@code ExcelUtil.getReader(path)}
      */
     @Test
     public void testReader() throws InterruptedException {
@@ -76,40 +78,41 @@ public class CaseTest {
 
         List<BaseNeoDTO> data = CollUtil.newArrayList();
 
+        String path = "C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx";
         executor.execute(() -> {
-            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
-
+            ExcelReader reader = ExcelUtil.getReader(path);
             List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
             log.info("【dbs】:{}", dbs);
+            (data).addAll(dbs);
         });
-        executor.execute(() -> {
-            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
             List<TableInfoDTO> tables = reader.setSheet("Table").read(0, 1, TableInfoDTO.class);
             log.info("【tables】:{}", tables);
+            (data).addAll(tables);
         });
-        executor.execute(() -> {
-            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
             List<ViewInfoDTO> views = reader.setSheet("View").read(0, 1, ViewInfoDTO.class);
             log.info("【views】:{}", views);
+            (data).addAll(views);
         });
-        executor.execute(() -> {
-            ExcelReader reader = ExcelUtil.getReader("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx");
 
+        executor.execute(() -> {
+            ExcelReader reader = ExcelUtil.getReader(path);
             List<ColumnInfoDTO> columns = reader.setSheet("Column").read(0, 1, ColumnInfoDTO.class);
             log.info("【columns】:{}", columns);
+            (data).addAll(columns);
         });
 
-        Thread.sleep(100000);
+        // 防止主线程执行完,线程池关闭
+        Thread.sleep(5000);
 
-        //data.addAll(dbs);
-        //data.addAll(tables);
-        //data.addAll(views);
-        //data.addAll(columns);
-        //log.info("【解析成JavaBean】:{}", data);
-        //
-        //log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
+        log.info("【解析成JavaBean】:{}", data);
+
+        log.info("【解析成Json】:{}", JSONUtil.parseArray(data));
     }
 
     /**
@@ -130,12 +133,5 @@ public class CaseTest {
         Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
         reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/hutool/Import_Model.xlsx", -1);
         log.info("【获取excel总条数】: {}", count.get() - 4);
-    }
-
-    /**
-     * 获取excel总条数
-     */
-    @Test
-    public void testTotalCount2() throws IOException {
     }
 }
