@@ -1,5 +1,6 @@
 package com.xlasers.demo;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +37,32 @@ public class StringCollection {
 
         String toPort = "LEIXINgDM";
         assertEquals("LEIXINGDM", toPort.toUpperCase());
+    }
+
+    /**
+     * <p> 测试hutool-subAfter
+     */
+    @Test
+    void testCase2() {
+        String test = "13>>27库>>WFBEMR>>TE_MOBANXX";
+
+        String after1 = StrUtil.subAfter(test, ">>", false);
+        log.info("【after1】:{}", after1);
+
+        String after2 = StrUtil.subAfter(test, ">>", true);
+        log.info("【after2】:{}", after2);
+
+        String before1 = StrUtil.subBefore(test, ">>", false);
+        log.info("【before1】:{}", before1);
+
+        String before2 = StrUtil.subBefore(test, ">>", true);
+        log.info("【before2】:{}", before2);
+
+        String source = "table-oracle@192.168.202.2@1521@orcl@SH@EMPLOYEE";
+        String prefix = "db-";
+        String middle = StrUtil.subAfter(source, "-", false);
+        String suffix = StrUtil.subBefore(middle, "@", true);
+        String target = StrUtil.builder().append(prefix).append(suffix).toString();
+        log.info("【target】:{}", target);
     }
 }
