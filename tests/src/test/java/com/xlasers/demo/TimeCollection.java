@@ -1,11 +1,17 @@
 package com.xlasers.demo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Date;
 
 import cn.hutool.core.date.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * The type Time collection.
@@ -48,5 +54,31 @@ public class TimeCollection {
         long mill = time.toInstant(ZoneOffset.ofHours(8)).toEpochMilli();
         log.info("【localDateTime】测试mill: {}, 格式化:{}", mill, DateUtil.formatDateTime(DateUtil.date(mill)));
         log.info("【localDateTime】测试mill: {}, 格式化:{}", System.currentTimeMillis(), DateUtil.formatDateTime(DateUtil.date(System.currentTimeMillis())));
+    }
+
+    /**
+     * Test case 2.
+     *
+     * <P>hutool日期工具类
+     */
+    @Test
+    void testCase2() {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = "2018-07-18 11:11:11";
+
+        Long timeOne = DateUtil.parse(time).getTime();
+
+        Long timeTwo = null;
+        try {
+            timeTwo = sdf.parse(time).getTime();
+        } catch (ParseException e) {
+            log.info("【hutool】日期工具类测试 !");
+        }
+
+        assertEquals(timeOne, timeTwo);
+
+        Date date = DateUtil.date(timeOne);
+        assertNotEquals(Date.class, date.getClass());
     }
 }
