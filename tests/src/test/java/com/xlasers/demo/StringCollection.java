@@ -57,5 +57,12 @@ public class StringCollection {
 
         String before2 = StrUtil.subBefore(source, ">>", true);
         log.info("【before2】:{}", before2);
+
+        String id = "table-oracle@192.168.202.2@1521@orcl@SH@EMPLOYEE";
+        String prefix = "db-";
+        String middle = StrUtil.subAfter(id, "-", false);
+        String suffix = StrUtil.subBefore(middle, "@", true);
+        String target = StrUtil.builder().append(prefix).append(suffix).toString();
+        log.info("【target】:{}", target);
     }
 }
