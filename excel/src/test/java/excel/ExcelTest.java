@@ -136,6 +136,29 @@ public class ExcelTest {
     }
 
     /**
+     * 获取excel总条数
+     */
+    @Test
+    public void testSheetCount() {
+        String path = "C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model.xlsx";
+        ExcelReader reader = ExcelUtil.getReader(path);
+        int countDb = reader.setSheet("Db").getSheet().getLastRowNum();
+        log.info("【countDb】:{}", countDb);
+
+        int countTable = reader.setSheet("Table").getSheet().getLastRowNum();
+        log.info("【countTable】:{}", countTable);
+
+        int countView = reader.setSheet("View").getSheet().getLastRowNum();
+        log.info("【countView】:{}", countView);
+
+        int countColumn = reader.setSheet("Column").getSheet().getLastRowNum();
+        log.info("【countColumn】:{}", countColumn);
+
+        int countAll = countDb + countTable + countView + countColumn;
+        log.info("【countAll】:{}", countAll);
+    }
+
+    /**
      * 解析excel成javabean
      */
     @Test
