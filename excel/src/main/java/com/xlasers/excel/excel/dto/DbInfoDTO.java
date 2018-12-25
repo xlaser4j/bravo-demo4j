@@ -56,5 +56,5 @@ public class DbInfoDTO extends BaseNeoDTO {
     /**
      * 数据库业务类型 - 关系
      */
-    private List<Object> businessType;
+    private String businessType;
 }

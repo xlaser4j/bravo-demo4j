@@ -31,11 +31,11 @@ import org.junit.jupiter.api.Test;
  * @modified: Elijah.D
  */
 @Slf4j
-public class CaseTest {
+public class ExcelTest {
     /**
-     * <p>1.sax读取excel数据 {@link CaseTest#testSax()}
+     * <p>1.sax读取excel数据 {@link ExcelTest#testSax()}
      *
-     * <p>2.lambada表达式变形 {@link CaseTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
+     * <p>2.lambada表达式变形 {@link ExcelTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
      *
      * @return RowHandler
      */
@@ -139,7 +139,7 @@ public class CaseTest {
      * 解析excel成javabean
      */
     @Test
-    public void testReadToBean() {
+    public void testToBean() {
         String path = "C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model.xlsx";
         ExcelReader reader = ExcelUtil.getReader(path);
         List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
