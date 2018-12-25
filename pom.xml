@@ -14,7 +14,7 @@
         <module>tests</module>
         <module>generator</module>
         <module>api</module>
-        <module>hutool</module>
+        <module>excel</module>
     </modules>
 
 
