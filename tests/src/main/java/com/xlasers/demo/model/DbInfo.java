@@ -5,6 +5,19 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * <p>
+ * model
+ * </p>
+ *
+ * @package: com.xlasers.demo.model
+ * @author: Elijah.D
+ * @time: CreateAt 2018/12/28 && 13:32
+ * @description: model
+ * @copyright: Copyright © 2018 xlasers
+ * @version: V1.0
+ * @modified: Elijah.D
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DbInfo extends BaseNeoDO {

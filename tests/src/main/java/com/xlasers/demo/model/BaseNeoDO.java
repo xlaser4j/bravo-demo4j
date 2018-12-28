@@ -4,6 +4,19 @@ import java.io.Serializable;
 
 import lombok.Data;
 
+/**
+ * <p>
+ * model
+ * </p>
+ *
+ * @package: com.xlasers.demo.model
+ * @author: Elijah.D
+ * @time: CreateAt 2018/12/28 && 13:32
+ * @description: model
+ * @copyright: Copyright © 2018 xlasers
+ * @version: V1.0
+ * @modified: Elijah.D
+ */
 @Data
 public abstract class BaseNeoDO implements Serializable {
     private static final long serialVersionUID = -1352173478409830273L;
