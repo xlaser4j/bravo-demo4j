@@ -2,6 +2,7 @@ package com.xlasers.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -17,6 +18,8 @@ import lombok.Data;
  * @modified: Elijah.D
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Arrow {
     /**
      * 起始点
@@ -46,14 +49,6 @@ public class Arrow {
     public Arrow(String source, String target, String value) {
         this.source = source;
         this.target = target;
-        this.value = value;
-    }
-
-    public Arrow(String source, Boolean sourceDeleted, String target, Boolean targetDeleted, String value) {
-        this.source = source;
-        this.sourceDeleted = sourceDeleted;
-        this.target = target;
-        this.targetDeleted = targetDeleted;
         this.value = value;
     }
 }
