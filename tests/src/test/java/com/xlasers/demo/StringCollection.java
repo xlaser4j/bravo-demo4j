@@ -65,4 +65,18 @@ public class StringCollection {
         String target = StrUtil.builder().append(prefix).append(suffix).toString();
         log.info("【target】:{}", target);
     }
+
+    /**
+     * <p> 测试hutool-format
+     */
+    @Test
+    void testCase3() {
+        String template1 = "你的名字是: {}";
+        String t1 = StrUtil.format(template1, "哈哈", "呵呵");
+        log.info("【t1】:{}", t1);
+
+        String template2 = "你的名字是: {{}}";
+        String t2 = StrUtil.format(template2, "哈哈", "呵呵");
+        log.info("【t2】:{}", t2);
+    }
 }

@@ -7,6 +7,7 @@ import java.time.ZoneOffset;
 import java.util.Date;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.TimeInterval;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -80,5 +81,28 @@ public class TimeCollection {
 
         Date date = DateUtil.date(timeOne);
         assertNotEquals(Date.class, date.getClass());
+    }
+
+    /**
+     * Test case 3.
+     *
+     * <P>hutool时间工具类-计算间隔时间
+     */
+    @Test
+    void testCase3() throws InterruptedException {
+        TimeInterval interval = new TimeInterval();
+
+        Thread.sleep(3000);
+        long time1 = interval.interval();
+        log.info("【time1】:{}", time1);
+
+        Thread.sleep(2000);
+        long time2 = interval.interval();
+        log.info("【time2】:{}", time2);
+
+        interval.restart();
+        Thread.sleep(1000);
+        long time3 = interval.interval();
+        log.info("【time3】:{}", time3);
     }
 }
