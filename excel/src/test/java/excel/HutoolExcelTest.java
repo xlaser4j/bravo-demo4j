@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
@@ -19,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * <p>
- * test: 测试excel相关api
+ * test: 测试hutool-excel相关api
  * </p>
  *
  * @package: excel
@@ -31,11 +32,11 @@ import org.junit.jupiter.api.Test;
  * @modified: Elijah.D
  */
 @Slf4j
-public class ExcelTest {
+public class HutoolExcelTest {
     /**
-     * <p>1.sax读取excel数据 {@link ExcelTest#testSax()}
+     * <p>1.sax读取excel数据 {@link HutoolExcelTest#testSax()}
      *
-     * <p>2.lambada表达式变形 {@link ExcelTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
+     * <p>2.lambada表达式变形 {@link HutoolExcelTest#testTotalCount()} (o1, o2, o3) -> count.getAndIncrement()
      *
      * @return RowHandler
      */
@@ -129,17 +130,26 @@ public class ExcelTest {
      */
     @Test
     public void testTotalCount() {
+        log.info("【begin】:{}", DateUtil.formatTime(DateUtil.date()));
         AtomicLong count = new AtomicLong();
         Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
-        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model.xlsx", -1);
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", -1);
         log.info("【获取excel总条数】: {}", count.get() - 4);
+        log.info("【end】:{}", DateUtil.formatTime(DateUtil.date()));
+
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", 0);
+        log.info("【获取excel总条数】: {}", count.get() - 1);
+
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", 3);
+        log.info("【获取excel总条数】: {}", count.get() - 1);
     }
 
     /**
-     * 获取excel总条数
+     * 获取excel总条数: 文件大于10M会内存溢出,推荐大数据量sax方法,但是功能简单,建议alibaba: easyexcel
      */
     @Test
     public void testSheetCount() {
+        log.info("【begin】:{}", DateUtil.formatTime(DateUtil.date()));
         String path = "C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model.xlsx";
         ExcelReader reader = ExcelUtil.getReader(path);
         int countDb = reader.setSheet("Db").getSheet().getLastRowNum();
@@ -156,6 +166,7 @@ public class ExcelTest {
 
         int countAll = countDb + countTable + countView + countColumn;
         log.info("【countAll】:{}", countAll);
+        log.info("【end】:{}", DateUtil.formatTime(DateUtil.date()));
     }
 
     /**
