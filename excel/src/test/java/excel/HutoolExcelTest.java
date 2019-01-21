@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.poi.excel.ExcelReader;
@@ -133,15 +134,32 @@ public class HutoolExcelTest {
         log.info("【begin】:{}", DateUtil.formatTime(DateUtil.date()));
         AtomicLong count = new AtomicLong();
         Excel07SaxReader reader2 = new Excel07SaxReader((o1, o2, o3) -> count.getAndIncrement());
-        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", -1);
-        log.info("【获取excel总条数】: {}", count.get() - 4);
+
+        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model2.xlsx", 0);
+        Long db = count.get();
+        log.info("【获取excel-db总条数】: {}", db - 1);
         log.info("【end】:{}", DateUtil.formatTime(DateUtil.date()));
 
-        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", 0);
-        log.info("【获取excel总条数】: {}", count.get() - 1);
+        AtomicLong count3 = new AtomicLong();
+        Excel07SaxReader reader3 = new Excel07SaxReader((o1, o2, o3) -> count3.getAndIncrement());
+        reader3.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model2.xlsx", 1);
+        Long table = count3.get();
+        log.info("【获取excel-table总条数】: {}", table - 1);
 
-        reader2.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/max.xlsx", 3);
-        log.info("【获取excel总条数】: {}", count.get() - 1);
+        AtomicLong count4 = new AtomicLong();
+        Excel07SaxReader reader4 = new Excel07SaxReader((o1, o2, o3) -> count4.getAndIncrement());
+        reader4.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model2.xlsx", 2);
+        Long view = count4.get();
+        log.info("【获取excel-view总条数】: {}", view - 1);
+
+        AtomicLong count5 = new AtomicLong();
+        Excel07SaxReader reader5 = new Excel07SaxReader((o1, o2, o3) -> count5.getAndIncrement());
+        reader5.read("C:/Users/Solor/Desktop/Code/future/bravo-demos/excel/Import_Model2.xlsx", 3);
+        Long column = count5.get();
+        log.info("【获取excel-column总条数】: {}", column - 1);
+
+        log.info("【获取excel总条数-1】:{}", count.get() - 4);
+        log.info("【获取excel总条数-2】:{}", db + table + view + column - 4);
     }
 
     /**
@@ -178,5 +196,14 @@ public class HutoolExcelTest {
         ExcelReader reader = ExcelUtil.getReader(path);
         List<DbInfoDTO> dbs = reader.setSheet("Db").read(0, 1, DbInfoDTO.class);
         log.info("【dbs】:{}", dbs);
+    }
+
+    @Test
+    public void test() {
+        try {
+            FileUtil.del("D:\\data\\import\\data-manager\\采集作业-29_元数据导出.xlsx");
+        } catch (Exception e) {
+            log.error("【删除-excel】:{} io异常,{} ! ", e);
+        }
     }
 }
