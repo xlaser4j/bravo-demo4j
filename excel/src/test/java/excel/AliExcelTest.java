@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.metadata.Sheet;
@@ -63,7 +64,8 @@ public class AliExcelTest {
         InputStream inputStream = FileUtil.getResourcesFileInputStream("2007.xlsx");
         List<Object> data = EasyExcelFactory.read(inputStream, new Sheet(2, 1, ReadModel.class));
         inputStream.close();
-        log.info("【data】:{}",data);
+        log.info("【data】:{}", JSONUtil.parseArray(data));
+        log.info("【data】:{}", data);
     }
 
     /**
@@ -76,6 +78,7 @@ public class AliExcelTest {
         InputStream inputStream = FileUtil.getResourcesFileInputStream("2007.xlsx");
         ExcelListener excelListener = new ExcelListener();
         EasyExcelFactory.readBySax(inputStream, new Sheet(1, 1), excelListener);
+
         inputStream.close();
 
     }

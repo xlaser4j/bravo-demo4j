@@ -3,8 +3,10 @@ package com.xlasers.excel.listener;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -19,28 +21,27 @@ import com.alibaba.excel.event.AnalysisEventListener;
  * @version: V1.0
  * @modified: Elijah.D
  */
+@Slf4j
 public class ExcelListener extends AnalysisEventListener {
-
-
-    private List<Object> data = new ArrayList<Object>();
+    private List<Object> data = new ArrayList<>();
 
     @Override
     public void invoke(Object object, AnalysisContext context) {
+        log.info("【object】:{}", JSONUtil.toJsonStr(object));
         System.out.println(context.getCurrentSheet());
         data.add(object);
-        if(data.size()>=100){
-            doSomething();
-            data = new ArrayList<Object>();
+        if (data.size() >= 100) {
+            doSomething("start");
+            data = new ArrayList<>();
         }
     }
 
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-        doSomething();
+        doSomething("end");
     }
-    public void doSomething(){
-        for (Object o:data) {
-            System.out.println(o);
-        }
+
+    public static void doSomething(String s) {
+        log.info("【data】:{}", s);
     }
 }
