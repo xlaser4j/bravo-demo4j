@@ -67,7 +67,33 @@ public class NumberCollection {
         log.info("【ratio】:{}", ratio);
         DecimalFormat format = new DecimalFormat("#%");
         String s = format.format(ratio);
-        log.info("【s】:{}",s);
-        
+        log.info("【s】:{}", s);
+    }
+
+    /**
+     * Test case 3.
+     * <p>
+     * 在-128 至 127 范围内的赋值，Integer对象是在IntegerCache.cache产生，会复用已有对象，
+     * 这个区间内的Integer值可以直接使用==进行判断，但是这个区间之外的所有数据，都会在堆上产生，
+     * 并不会复用已有对象，这是一个大坑，推荐使用equals方法进行判断。
+     *
+     * <p>测试lInteger
+     */
+    @Test
+    void testCase3() {
+        Integer number1 = -128;
+        Integer number2 = -128;
+        log.info("【-128-127】:{}", number1 == number2);
+        Integer number3 = 127;
+        Integer number4 = 127;
+        log.info("【-128-127】:{}", number3 == number4);
+        Integer number5 = -129;
+        Integer number6 = -129;
+        log.info("【-128-127】:{}", number5 == number6);
+        log.info("【-128-127】:{}", number5.equals(number6));
+        Integer number7 = 128;
+        Integer number8 = 128;
+        log.info("【-128-127】:{}", number7 == number8);
+        log.info("【-128-127】:{}", number7.equals(number8));
     }
 }
