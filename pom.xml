@@ -15,6 +15,7 @@
         <module>generator</module>
         <module>api</module>
         <module>excel</module>
+        <module>demos</module>
     </modules>
 
 
