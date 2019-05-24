@@ -17,6 +17,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Odd {
+	public static void main(String[] args) {
+		Odd.isOdd(Type.NORMAL, 20);
+		Odd.isOdd(Type.NORMAL, 7);
+		Odd.isOdd(Type.BIT, 20);
+		Odd.isOdd(Type.BIT, 7);
+	}
+
 	/**
 	 * 判断num是否奇数
 	 *

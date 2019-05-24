@@ -17,6 +17,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class SwapVariable {
+	public static void main(String[] args) {
+		SwapVariable.swap(Type.NORMAL);
+		SwapVariable.swap(Type.BIT);
+		SwapVariable.swap(Type.OTHER);
+	}
+
 	/**
 	 * 对比两种交换变量方法,注意@<code>normal</code>方法,要根据具体的变量类型取巧计算!
 	 * 不一定完全适用!

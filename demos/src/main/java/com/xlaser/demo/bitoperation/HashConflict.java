@@ -4,20 +4,21 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
- * 位运算demo
+ * 记录一次hash碰撞
  * </p>
  *
  * @package: com.xlaser.demo.bitoperation
  * @author: Elijah.D
- * @time: CreateAt 2019/5/21 && 10:07
- * @description: 位运算的小测试
+ * @time: CreateAt 2019/5/24 && 11:51
+ * @description: 基于String的hashcode计算方法
  * @copyright: Copyright © 2018 xlaser
  * @version: V1.0
  * @modified: Elijah.D
  */
 @Slf4j
-public class App {
+public class HashConflict {
 	public static void main(String[] args) {
-		log.info("【查看各个方法的main主类!】");
+		log.info("【字符串Aa】hashcode计算值: {}", "Aa".hashCode());
+		log.info("【字符串BB】hashcode计算值: {}", "BB".hashCode());
 	}
 }

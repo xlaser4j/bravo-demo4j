@@ -17,6 +17,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Log2 {
+	public static void main(String[] args) {
+		Log2.log2(Type.NORMAL, 9);
+		Log2.log2(Type.NORMAL, 32);
+		Log2.log2(Type.BIT, 9);
+		Log2.log2(Type.BIT, 32);
+	}
+
 	/**
 	 * 判断num是否是2的整数幂
 	 *

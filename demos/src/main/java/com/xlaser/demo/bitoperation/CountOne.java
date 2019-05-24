@@ -28,6 +28,17 @@ public class CountOne {
 	 */
 	private static final String LOGIC_MOVE = ">>>";
 
+	public static void main(String[] args) {
+		countOne(8, ">>");
+		countOne(8, ">>>");
+
+		// 逻辑位移右侧补0,最后就是32个0
+		countOne(-8, ">>>");
+
+		// 注意这里算术位移会发生死循环,每次右侧补1,移到最后是32个1,一直保持32位
+		//countOne(-8, ">>");
+	}
+
 	/**
 	 * 统计一个整数的二进制表示中1的个数
 	 *
@@ -35,14 +46,15 @@ public class CountOne {
 	 * @param type 逻辑位移 or 算术位移
 	 * @return count 个数
 	 */
-	public static int conutOne(int num, String type) {
-		log.info("【位移统计】num: {},对应的二进制表示为: {}", num, Integer.toBinaryString(num));
+	private static void countOne(int num, String type) {
+		log.info("【位移统计】类型: \"{}\", num: {},对应的二进制表示为: {}", type, num, Integer.toBinaryString(num));
 
 		int count = 0;
 		if (StrUtil.equals(type, MATH_MOVE)) {
 			while (num != 0) {
 				count += (num & 1);
 				num >>= 1;
+				log.info("【二进制】:{}, 长度{}", Integer.toBinaryString(num), Integer.toBinaryString(num).length());
 			}
 		}
 
@@ -50,11 +62,26 @@ public class CountOne {
 			while (num != 0) {
 				count += (num & 1);
 				num >>>= 1;
+				log.info("【二进制】:{}, 长度{}", Integer.toBinaryString(num), Integer.toBinaryString(num).length());
 			}
 		}
 
-		log.info("【{}】测试数据-num: {},二进制表示: {},位移计算统计数量: {}个 !", type, num, Integer.toBinaryString(num), count);
+		log.info("【统计结果】位移类型: \"{}\",数字1出现的次数: {}个 !\n", type, count);
+	}
 
-		return count;
+	/**
+	 * 1.上述移位的情况下,最大可循环32次
+	 * 2.优化查询,利用每次与比自己小1的数与那么该数的二进制表示最后一个为1位上的1将将会被抹去
+	 *
+	 * @param num 测试数据
+	 * @return 个数
+	 */
+	public int countOne(int num) {
+		int res = 0;
+		while (num != 0) {
+			num &= (num - 1);
+			res++;
+		}
+		return res;
 	}
 }
