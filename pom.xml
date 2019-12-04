@@ -38,7 +38,7 @@
         <HikariCP.version>2.7.2</HikariCP.version>
         <xerces.version>2.12.0</xerces.version>
         <poi.version>3.17</poi.version>
-        <hutool-all.version>4.1.19</hutool-all.version>
+        <hutool-all.version>5.0.7</hutool-all.version>
         <guava.version>25.0-jre</guava.version>
         <modelmapper.version>1.1.0</modelmapper.version>
         <lombok.version>1.18.0</lombok.version>
