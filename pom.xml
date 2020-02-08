@@ -11,12 +11,8 @@
     <inceptionYear>2018</inceptionYear>
 
     <modules>
-        <module>tests</module>
         <module>generator</module>
-        <module>api</module>
         <module>excel</module>
-        <module>hutool</module>
-        <module>demos</module>
     </modules>
 
 
