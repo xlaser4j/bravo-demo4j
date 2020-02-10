@@ -16,8 +16,9 @@
     <inceptionYear>2018</inceptionYear>
 
     <modules>
-        <module>generator</module>
+        <module>common</module>
         <module>excel</module>
+        <module>generator</module>
     </modules>
 
     <properties>
