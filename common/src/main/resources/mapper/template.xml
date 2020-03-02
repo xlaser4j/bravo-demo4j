@@ -1,0 +1,48 @@
+<template>
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xlaser4j.hr.entity.MenuDO">
+        <id column="id" property="id"/>
+        <result column="url" property="url"/>
+        <result column="path" property="path"/>
+        <result column="component" property="component"/>
+        <result column="name" property="name"/>
+        <result column="enabled" property="enabled"/>
+        <result column="icon_cls" property="iconCls"/>
+        <result column="parent_id" property="parentId"/>
+    </resultMap>
+
+    <!-- 方便前端使用这两个Meta属性,同时方便下面extends复用BaseMap -->
+    <resultMap id="MetaResultMap" type="com.xlaser4j.hr.entity.MenuDO" extends="BaseResultMap">
+        <result column="keep_alive" property="keepAlive"/>
+        <result column="require_auth" property="requireAuth"/>
+    </resultMap>
+
+    <!-- 通过collection/association实现一对多并且嵌套对象meta结构,也可以通过代码递归查询,注意extends用法 -->
+    <resultMap id="NavMenuMap" type="com.xlaser4j.hr.entity.vo.NavMenuVO" extends="BaseResultMap">
+        <association property="meta" javaType="com.xlaser4j.hr.entity.vo.Meta">
+            <result column="keep_alive" property="keepAlive"/>
+            <result column="require_auth" property="requireAuth"/>
+        </association>
+        <collection property="children" ofType="com.xlaser4j.hr.entity.vo.NavMenuVO">
+            <result column="c_id" property="id"/>
+            <result column="c_path" property="path"/>
+            <result column="c_component" property="component"/>
+            <result column="c_name" property="name"/>
+            <result column="c_icon_cls" property="iconCls"/>
+            <result column="c_enabled" property="enabled"/>
+            <association property="meta" javaType="com.xlaser4j.hr.entity.vo.Meta">
+                <result column="c_keep_alive" property="keepAlive"/>
+                <result column="c_require_auth" property="requireAuth"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <!-- collection一对多映射 -->
+    <resultMap id="SecurityMenuMap" type="com.xlaser4j.hr.entity.vo.SecurityMenuVO">
+        <result column="url" property="url"/>
+        <collection property="roles" ofType="com.xlaser4j.hr.entity.RoleDO">
+            <result column="name" property="name"/>
+        </collection>
+    </resultMap>
+
+</template>

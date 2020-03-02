@@ -1,7 +1,7 @@
 package com.xlaser4j.common.exception;
 
-import com.xlaser4j.common.ApiResponse;
 import com.xlaser4j.common.enums.Status;
+import com.xlaser4j.common.response.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

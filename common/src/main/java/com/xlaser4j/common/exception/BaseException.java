@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 /**
  * The type Base exception.
  *
- * @package: com.xlaser4j.opening.common.exception
+ * @package: com.xlaser4j.common.exception
  * @author: Elijah.D
  * @time: 2018/10/15 16:46
  * @description: 异常基类

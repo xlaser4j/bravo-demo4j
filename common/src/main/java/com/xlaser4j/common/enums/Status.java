@@ -18,6 +18,21 @@ public enum Status {
     OK(HttpStatus.OK),
 
     /**
+     * 未登陆
+     */
+    NO_LOGIN(HttpStatus.BAD_REQUEST, "请登录!"),
+
+    /**
+     * 登陆成功
+     */
+    LOGIN(HttpStatus.OK, "登陆成功!"),
+
+    /**
+     * 注销成功
+     */
+    LOGOUT(HttpStatus.OK, "注销成功!"),
+
+    /**
      * 请求错误
      */
     BAD_REQUEST(HttpStatus.BAD_REQUEST),

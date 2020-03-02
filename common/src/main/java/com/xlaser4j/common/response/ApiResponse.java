@@ -1,4 +1,4 @@
-package com.xlaser4j.common;
+package com.xlaser4j.common.response;
 
 import com.xlaser4j.common.enums.Status;
 import com.xlaser4j.common.exception.BaseException;
@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @package: com.xlaser4j.common
+ * @package: com.xlaser4j.common.response
  * @author: Elijah.D
  * @time: 2020/2/10 15:18
  * @description:
@@ -23,7 +23,7 @@ public class ApiResponse<T> {
     private Integer code;
 
     /**
-     * 返回内容
+     * 返回消息
      */
     private String message;
 
@@ -54,11 +54,22 @@ public class ApiResponse<T> {
     /**
      * <p> 构造一个成功且自定义消息的API返回
      *
-     * @param message 返回内容
+     * @param message 返回消息
      * @return ApiResponse api返回
      */
     public ApiResponse<T> ofMessage(String message) {
         return of(Status.OK.getCode(), message, null);
+    }
+
+    /**
+     * <p> 构造一个成功且自定义消息的API返回数据
+     *
+     * @param message 返回消息
+     * @param data    返回数据
+     * @return ApiResponse api返回
+     */
+    public ApiResponse<T> ofMessage(String message, T data) {
+        return of(Status.OK.getCode(), message, data);
     }
 
     /**
@@ -86,7 +97,7 @@ public class ApiResponse<T> {
      * <p> 构造一个自定义的API返回
      *
      * @param code    状态码
-     * @param message 返回内容
+     * @param message 返回消息
      * @param data    返回数据
      * @return ApiResponse api返回
      */

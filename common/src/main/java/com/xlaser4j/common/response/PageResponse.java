@@ -1,4 +1,4 @@
-package com.xlaser4j.common;
+package com.xlaser4j.common.response;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * @package: com.xlaser4j.common
+ * @package: com.xlaser4j.common.response
  * @author: Elijah.D
  * @time: 2020/2/10 15:30
  * @description: Page Helper
