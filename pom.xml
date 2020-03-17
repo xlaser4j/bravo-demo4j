@@ -9,7 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.xlaser</groupId>
+    <groupId>com.xlaser4j</groupId>
     <artifactId>bravo-demo4j</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -20,6 +20,7 @@
         <module>demo</module>
         <module>excel</module>
         <module>generator</module>
+        <module>refactor</module>
     </modules>
 
     <properties>
