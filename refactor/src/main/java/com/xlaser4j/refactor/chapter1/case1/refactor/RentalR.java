@@ -27,30 +27,26 @@ public class RentalR {
      * 计算每一个租赁的电影花费
      * <p>
      * Note: <b>计算价格的方法,不应该放在customer类中,应该放置在相关类中</b>
+     * <p>
+     * Note2: <b>不应该基于Movie的属性数据使用switch,所以把switch相关的逻辑提炼到Movie中</b>
      *
-     * @return amount
+     * @return 价格
      */
     public double getCharge() {
-        double thisAmount = 0;
-        switch (getMovieR().getPrice()) {
-            case MovieR.REGULAR:
-                thisAmount += 2;
-                if (getRentDays() > 2) {
-                    thisAmount += (getRentDays() - 2) * 1.5;
-                }
-                break;
-            case MovieR.NEW_RELEASE:
-                thisAmount += getRentDays() * 3;
-                break;
-            case MovieR.CHILDREN:
-                thisAmount += 1.5;
-                if (getRentDays() > 3) {
-                    thisAmount += (getRentDays() - 3) * 1.5;
-                }
-                break;
-            default:
-        }
-        return thisAmount;
+        return movieR.getCharge(rentDays);
+    }
+
+    /**
+     * 计算一次租赁获取的积分
+     * <p>
+     * Note: <b>积分的计算设计到的属性也都属于Rental,因此应该放在这</b>
+     * <p>
+     * Note2: <b>同上,基于Movie的属性数据计算的相关逻辑提炼到Movie中</b>
+     *
+     * @return 积分
+     */
+    public int getFrequentRenterPoints() {
+        return movieR.getFrequentRenterPoints(rentDays);
     }
 
     public MovieR getMovieR() {

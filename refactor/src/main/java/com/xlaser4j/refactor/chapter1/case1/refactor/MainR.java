@@ -1,6 +1,12 @@
 package com.xlaser4j.refactor.chapter1.case1.refactor;
 
 /**
+ * <b>Extract Method</b>
+ * <b>Move Method</b>
+ * <b>Replace Conditional With Polymorphism</b>
+ * <b>Self Encapsulate Field</b>
+ * <b>Replace Type Code With State/Strategy</b>
+ *
  * @package: com.xlaser4j.refactor.chapter1.case1.origin
  * @author: Elijah.D
  * @time: 2020/3/17 15:38
