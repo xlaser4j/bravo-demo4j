@@ -1,36 +1,11 @@
-## Bravo-Demos
+<h3 align=center> Bravo-Demos</h3>
 
-### Common-积累开发中一些可以复用的类或者配置
-- Response
-- Exception
-- Security
-- Mapper.xml
-- Ehcache.xml
-- Logback.xml
-
----
-
-### Demo-积累开发中首次尝试的case
-- Demo202002
-- Demo202003
----
-
-### Excel
-- TODO
----
-
-### Generator-记录mybatis的generator
-- Mybatis
-- MybatisPlus
-
----
-
-### Refactor-基于Martin的重构,记录书中的相关demo
+#### Refactor-基于Martin的重构,记录书中的相关demo
 > <p align=center><b>Refactoring</b> Improving the Design of Existing Code</p>
 > Any fool can write code that a computer can understand.Good programmers write code that humans can understand.
 > <p align=right>-- Martin Fowler</p>
 
-- Chapter3
+- Chapter3 (code smell)
   - Duplicated Code-重复代码 
   - Long Method-过长的函数
   - Large Class-过大的类
@@ -54,11 +29,39 @@
   - Refused Bequest-被拒绝的遗赠(继承问题)
   - Comments-过多的注释
 
-- Chapter6
+- Chapter6 (重新组织函数)
   - Extract Method (提炼函数)
   - Inline Method (内联函数)
   - Inline Temp (内联临时变量)
   - Replace Temp with Query (以查询取代临时变量)
+  - Introduce Explaining Variable (引入解释性变量)
+  - Split Temporary Variable (分解临时变量)
+  - Remove Assignments to Parameters (移除对参数的赋值)
+  - Replace Method with Method Object (以函数对象取代函数)
+  - Substitute Algorithm (替换算法)
   
 
 - Chapter7
+---
+
+#### Common-积累开发中一些可以复用的类或者配置
+- Response
+- Exception
+- Security
+- Mapper.xml
+- Ehcache.xml
+- Logback.xml
+---
+
+#### Demo-积累开发中某些特殊的case
+- Demo202002
+- Demo202003
+---
+
+#### Excel
+- TODO
+---
+
+#### Generator-记录mybatis的generator
+- Mybatis
+- Mybatis Plus
