@@ -1,7 +1,8 @@
 <h3 align=center> Bravo-Demos</h3>
 
 #### Refactor-基于Martin的重构,记录书中的相关demo
-> <p align=center><b>Refactoring</b> Improving the Design of Existing Code</p>
+<p align=center><b>Refactoring</b> Improving the Design of Existing Code</p>
+
 > Any fool can write code that a computer can understand.Good programmers write code that humans can understand.
 > <p align=right>-- Martin Fowler</p>
 
@@ -41,7 +42,15 @@
   - Substitute Algorithm (替换算法)
   
 
-- Chapter7
+- Chapter7(对象之间的搬移)
+  - Move Method (搬移函数)
+  - Move Field (搬移字段)
+  - Extract Class (提炼类)
+  - Inline Class (内联类,与提炼类相反)
+  - Hide Delegate (隐藏委托关系)
+  - Remove Middle Man (移除中间人,与隐藏委托关系相反)
+  - Introduce Foreign Method (引入外加函数)
+  - Introduce Local Extension (引入本地扩展,当外加函数过多时改为扩展类)
 ---
 
 #### Common-积累开发中一些可以复用的类或者配置
