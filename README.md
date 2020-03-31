@@ -1,10 +1,9 @@
 <h3 align=center> Bravo-Demos</h3>
 
-#### Refactor-基于Martin的重构,记录书中的相关demo
-<p align=center><b>Refactoring</b> Improving the Design of Existing Code</p>
+#### Refactor-基于Martin的重构,记录<< Refactoring Improving the Design of Existing Code >>中的相关demo
 
 > Any fool can write code that a computer can understand.Good programmers write code that humans can understand.
-> <p align=right>-- Martin Fowler</p>
+<p align=right>-- Martin Fowler</p>
 
 - Chapter3 (code smell)
   - Duplicated Code-重复代码 
@@ -42,7 +41,7 @@
   - Substitute Algorithm (替换算法)
   
 
-- Chapter7(对象之间的搬移)
+- Chapter7 (对象之间的搬移)
   - Move Method (搬移函数)
   - Move Field (搬移字段)
   - Extract Class (提炼类)
@@ -51,7 +50,36 @@
   - Remove Middle Man (移除中间人,与隐藏委托关系相反)
   - Introduce Foreign Method (引入外加函数)
   - Introduce Local Extension (引入本地扩展,当外加函数过多时改为扩展类)
+  
+
+- Chapter8 (重新组织数据)
+  - Self Encapsulate Field (自封装字段)
+  - Replace Data Value with Object (以对象取代数据值)
+  - Change Value to Reference (将值对象改为引用对象)
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
+  -  ()
 ---
+select  from
+(
+SELECT bs_serial_no no FROM branch_secretary bs WHERE  bs.bs_serial_no ='A061910' 
+or
+SELECT pa_serial_no  FROM personal_assistant pa WHERE pa.pa_serial_no = 'A061910' 
+)
 
 #### Common-积累开发中一些可以复用的类或者配置
 - Response

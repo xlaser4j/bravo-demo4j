@@ -1,8 +1,4 @@
 # Refactor Demos
-> Any fool can write code that a computer can understand. 
-Good programmers write code that humans can understand.
-> <p align=right>-- Martin Fowler</p>
----
 
 > 重构: 对软件内部结构的一种调整,目的是在不改变软件可观察行为的前提下,提高其可理解性,降低其修改成.
 
