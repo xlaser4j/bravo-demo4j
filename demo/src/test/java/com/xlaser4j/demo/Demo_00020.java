@@ -1,5 +1,7 @@
 package com.xlaser4j.demo;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,9 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class Demo_00020 {
     /**
-     * 获取当前module的resources绝对路径
-     * <p>
-     * main方法和web获取的module不相同
+     * 获取当前module的resources绝对路径;main方法和web获取的module不相同
+     *
+     * @see CaseEnum#FILE
      */
     @Test
     public void case0() {
@@ -45,9 +47,11 @@ public class Demo_00020 {
     }
 
     /**
+     * <p>
      * File 转 MultipartFile
      *
      * @throws IOException
+     * @see CaseEnum#FILE
      */
     @Test
     public void case1() throws IOException {
@@ -66,6 +70,8 @@ public class Demo_00020 {
      * 字符串,单词大小写处理
      * <p>
      * {@link WordUtils#capitalizeFully(String)}
+     *
+     * @see CaseEnum#STRING
      */
     @Test
     public void case3() {
@@ -90,6 +96,7 @@ public class Demo_00020 {
      * {@link TypeReference}
      *
      * @throws Exception
+     * @see CaseEnum#JSON
      */
     @Test
     public void case4() throws Exception {
@@ -111,8 +118,19 @@ public class Demo_00020 {
         System.out.println("数据类型-通过数组: " + Arrays.asList(personTypes).get(0).getClass());
     }
 
+    /**
+     * 输出流转输入流
+     *
+     * @see CaseEnum#IO
+     */
     @Test
     public void case5() {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+    }
+
+    @Test
+    public void case6() {
 
     }
 }
