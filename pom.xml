@@ -33,7 +33,7 @@
         <hutool-all.version>5.1.0</hutool-all.version>
         <guava.version>25.0-jre</guava.version>
         <commons-text.version>1.8</commons-text.version>
-        <easyexcel.version>2.1.4</easyexcel.version>
+        <easyexcel.version>2.2.3</easyexcel.version>
         <xerces.version>2.12.0</xerces.version>
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.21</slf4j.version>
