@@ -9,22 +9,22 @@ import java.util.HashMap;
  * @description:
  * @modified: Elijah.D
  */
-public class CustomerR {
-    private static HashMap<String, CustomerR> instances = new HashMap<>();
+public class Customer3R {
+    private static HashMap<String, Customer3R> instances = new HashMap<>();
 
     private String name;
 
-    private CustomerR(String name) {
+    private Customer3R(String name) {
         this.name = name;
     }
 
     static void loadCustomers() {
-        new CustomerR("Customer-1").store();
-        new CustomerR("Customer-2").store();
-        new CustomerR("Customer-3").store();
+        new Customer3R("Customer-1").store();
+        new Customer3R("Customer-2").store();
+        new Customer3R("Customer-3").store();
     }
 
-    public static CustomerR getByName(String name) {
+    public static Customer3R getByName(String name) {
         return instances.get(name);
     }
 

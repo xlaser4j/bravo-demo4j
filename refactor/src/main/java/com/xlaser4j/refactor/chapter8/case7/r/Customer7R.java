@@ -9,14 +9,14 @@ import java.util.Set;
  * @description:
  * @modified: Elijah.D
  */
-public class CustomerR {
-    private Set<OrderR> orders;
+public class Customer7R {
+    private Set<Order7R> orders;
 
-    Set<OrderR> listOrders() {
+    Set<Order7R> listOrders() {
         return orders;
     }
 
-    void addOrder(OrderR order) {
+    void addOrder(Order7R order) {
         order.setCustomerR(this);
     }
 }

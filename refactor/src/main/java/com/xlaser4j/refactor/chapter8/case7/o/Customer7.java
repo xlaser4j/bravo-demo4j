@@ -7,5 +7,5 @@ package com.xlaser4j.refactor.chapter8.case7.o;
  * @description:
  * @modified: Elijah.D
  */
-public class Customer {
+public class Customer7 {
 }

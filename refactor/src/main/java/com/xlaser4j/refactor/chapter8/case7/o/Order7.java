@@ -7,10 +7,10 @@ package com.xlaser4j.refactor.chapter8.case7.o;
  * @description:
  * @modified: Elijah.D
  */
-public class Order {
-    private Customer customer;
+public class Order7 {
+    private Customer7 customer7;
 
-    public Customer getCustomer() {
-        return customer;
+    public Customer7 getCustomer7() {
+        return customer7;
     }
 }

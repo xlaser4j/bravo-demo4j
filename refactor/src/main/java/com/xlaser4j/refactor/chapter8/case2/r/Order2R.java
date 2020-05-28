@@ -9,16 +9,16 @@ import java.util.List;
  * @description:
  * @modified: Elijah.D
  */
-public class OrderR {
-    private Customer customer;
+public class Order2R {
+    private Customer2R customer2R;
 
-    public OrderR(String customerName) {
-        this.customer = new Customer(customerName);
+    public Order2R(String customerName) {
+        this.customer2R = new Customer2R(customerName);
     }
 
-    private static int numberOfOrdersFor(List<OrderR> orders, String customerName) {
+    private static int numberOfOrdersFor(List<Order2R> orders, String customerName) {
         int result = 0;
-        for (OrderR order : orders) {
+        for (Order2R order : orders) {
             if (order.getCustomerName().equals(customerName)) {
                 result++;
             }
@@ -27,10 +27,10 @@ public class OrderR {
     }
 
     public String getCustomerName() {
-        return customer.getName();
+        return customer2R.getName();
     }
 
-    public void setCustomer(String customerName) {
-        this.customer = new Customer(customerName);
+    public void setCustomer2R(String customerName) {
+        this.customer2R = new Customer2R(customerName);
     }
 }

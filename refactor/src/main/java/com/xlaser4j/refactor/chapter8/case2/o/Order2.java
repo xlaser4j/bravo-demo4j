@@ -9,17 +9,17 @@ import java.util.List;
  * @description:
  * @modified: Elijah.D
  */
-public class Order {
+public class Order2 {
     private String customer;
 
-    public Order(String customer) {
+    public Order2(String customer) {
         this.customer = customer;
     }
 
-    private static int numberOfOrdersFor(List<Order> orders, String customer) {
+    private static int numberOfOrdersFor(List<Order2> order2s, String customer) {
         int result = 0;
-        for (Order order : orders) {
-            if (order.getCustomer().equals(customer)) {
+        for (Order2 order2 : order2s) {
+            if (order2.getCustomer().equals(customer)) {
                 result++;
             }
         }

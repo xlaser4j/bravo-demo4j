@@ -7,14 +7,14 @@ package com.xlaser4j.refactor.chapter8.case7.r;
  * @description:
  * @modified: Elijah.D
  */
-public class OrderR {
-    private CustomerR customer;
+public class Order7R {
+    private Customer7R customer;
 
-    public CustomerR getCustomerR() {
+    public Customer7R getCustomerR() {
         return customer;
     }
 
-    public void setCustomerR(CustomerR customer) {
+    public void setCustomerR(Customer7R customer) {
         if (customer != null) {
             customer.listOrders().remove(this);
         }
