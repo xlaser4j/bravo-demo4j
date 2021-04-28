@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: cn.hutool:hutool-all
+    versions:
+    - 5.5.7
+    - 5.5.8
+    - 5.5.9
+    - 5.6.0
+    - 5.6.1
+    - 5.6.2
+    - 5.6.3
+  - dependency-name: org.springframework.boot:spring-boot-starter-parent
+    versions:
+    - 2.4.2
+    - 2.4.3
+    - 2.4.4
+  - dependency-name: org.projectlombok:lombok
+    versions:
+    - 1.18.16
+    - 1.18.18
+  - dependency-name: com.alibaba:easyexcel
+    versions:
+    - 2.2.7
